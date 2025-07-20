@@ -176,12 +176,12 @@ def parse_map(data: bytes):
 
 def parse_attribute(data: bytes):
     class RESP3Attribute:
-        def __init__(self, name: str, attribs: dict, reply):
-            self.name = name
-            self.attribs = attribs
+        def __init__(self, name, attribs, reply):
+            self.dict = {}
+            self.dict[name] = attribs
             self.reply = reply
         def __repr__(self):
-            return f"RESP3Attribute(name={self.name!r}, attribs={self.attribs!r})"
+            return f"RESP3Attribute({self.dict}, {self.reply})"
         
     
     if data[0] != b"|":
@@ -189,8 +189,11 @@ def parse_attribute(data: bytes):
 
     _prefix, _data = data.split(b"|", 1)
     _length, _data = _data.split(CRLF, 1)
-    _attr_name, _data = parse_element(_data)
-    _attr_map, _data = parse_element(_data)
+    
+    for i in range(int(_length)):
+        _attr_name, _data = parse_element(_data)
+        _attr_map, _data = parse_element(_data)
+        
     _result, _data = parse_element(_data)
     attrs = RESP3Attribute(_attr_name, _attr_map, _result)
     _suffix = _data
