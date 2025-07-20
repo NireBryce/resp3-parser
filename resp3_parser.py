@@ -1,6 +1,6 @@
 CRLF = "\r\n"
 
-star
+
 class Resp3Message:
     def __init__(self, message):
         self.message: bytes = message
