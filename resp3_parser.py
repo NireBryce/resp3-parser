@@ -189,13 +189,16 @@ def parse_attribute(data: bytes):
 
     _prefix, _data = data.split(b"|", 1)
     _length, _data = _data.split(CRLF, 1)
-    
-    for i in range(int(_length)):
+    _attr_name = ""
+    _attr_map = {}
+    for _ in range(int(_length)):
         _attr_name, _data = parse_element(_data)
-        _attr_map, _data = parse_element(_data)
+        _attr_map[_attr_name], _data = parse_element(_data)
+        
+        
         
     _result, _data = parse_element(_data)
-    attrs = RESP3Attribute(_attr_name, _attr_map, _result)
+    attrs = RESP3Attribute(_attr_map, _result)
     _suffix = _data
     
     return attrs, _suffix
