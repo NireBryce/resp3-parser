@@ -1,5 +1,7 @@
-def parse_boolean(cls, data:bytes):
-        if data[0].to_bytes() != b"#":
+from ..CONSTANTS import CRLF
+from ..util import slice_first_byte
+def parse_boolean(data:bytes):
+        if slice_first_byte(data) != b"#":
             raise ValueError(f"Expected '#' for boolean prefix, got {data[0]}")
         _prefix, _bool = data.split(b"#", 1)
         _bool, _remaining = _bool.split(CRLF, 1)
@@ -9,4 +11,4 @@ def parse_boolean(cls, data:bytes):
             _result = False
         else:
             raise ValueError
-        return _result, _remaining
+        return _result

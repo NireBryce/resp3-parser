@@ -1,6 +1,7 @@
-@classmethod
-def parse_integer(cls, data: bytes) -> tuple[int, bytes]:
-    if data[0].to_bytes() != b":":
+from ..CONSTANTS import CRLF
+from ..util import slice_first_byte
+def parse_integer(data: bytes):
+    if slice_first_byte(data) != b":":
         raise ValueError(f"Expected ':' for integer prefix, got {data[0]}")
     _prefix, _int = data.split(b":", 1)
     _int, _remaining = _int.split(CRLF, 1)
@@ -9,4 +10,4 @@ def parse_integer(cls, data: bytes) -> tuple[int, bytes]:
     #     _int = _sign * _int[1:]
     # elif b"+" in _int:
     #     _int = _int[1:]
-    return int(_int), _remaining
+    return int(_int)

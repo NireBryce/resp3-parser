@@ -1,5 +1,6 @@
-def parse_verbatim_string(cls, data: bytes):
-    if data[0].to_bytes() != b"=":
+from ..util import slice_first_byte
+def parse_verbatim_string(data: bytes):
+    if slice_first_byte(data) != b"=":
         raise ValueError(f"Expected '=' for verbatim string prefix, got {data[0]}")
 
     _prefix, _data = data.split(b"=", 1)

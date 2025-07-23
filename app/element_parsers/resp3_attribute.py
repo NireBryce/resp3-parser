@@ -1,5 +1,5 @@
-@classmethod
-def parse_attribute(cls, data: bytes):
+from ..util import slice_first_byte
+def parse_attribute(data: bytes):
     class RESP3Attribute:
         def __init__(self, attribs: dict, reply):
             self.attribs = attribs # { key: { key : value, key2: value2 } }
@@ -8,7 +8,7 @@ def parse_attribute(cls, data: bytes):
             return f"RESP3Attribute({self.attribs}, {self.reply})"
         
     
-    if data[0].to_bytes() != b"|":
+    if slice_first_byte(data) != b"|":
         raise ValueError(f"Expected '|' for attribute prefix, got {data[0]}")
 
     _prefix, _data = data.split(b"|", 1)

@@ -1,6 +1,7 @@
-@classmethod
-def parse_bulk_string(cls, data: bytes):
-    if data[0].to_bytes() != b"$":
+from ..CONSTANTS import CRLF
+from ..util import slice_first_byte
+def parse_bulk_string(data: bytes):
+    if slice_first_byte(data) != b"$":
         raise ValueError(f"Expected '$' for bulk string prefix, got {data[0]}")
     _prefix, _string = data.split(b"$", 1)
     _length, _string = _string.split(CRLF, 1)
@@ -17,4 +18,4 @@ def parse_bulk_string(cls, data: bytes):
         _string = None
     else:
         _string = _string[:int(_length)].decode()
-    return _string, _remaining
+    return _string

@@ -1,5 +1,7 @@
+from ..util import slice_first_byte
+from ..CONSTANTS import TYPES
 def parse_array(data: bytes):
-    if data[0].to_bytes() != b'*':
+    if slice_first_byte(data) != b'*':
         raise ValueError(f"Expected {b'*'} for array prefix, got {data[0]}")
     _prefix, _data = data.split(b"*", 1)
     _length, _data = _data.split(b"\r\n", 1)
@@ -12,8 +14,8 @@ def parse_array(data: bytes):
     for i in range(int(_length)+1): 
         # TODO: this needs to be redone because it doesn't work pseudo-recursively
         # instead it just adds the first element of each loop
-        if _data and _data[0].to_bytes() in TYPES:
-            element, _data = RESP3.parse_element(_data)
+        if _data and slice_first_byte(_data) in TYPES:
+            element, _data = parse_element(_data)
             print(f"{element=}")
             _array_member.append(element) 
     # # TODO: also a hack
