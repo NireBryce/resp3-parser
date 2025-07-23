@@ -10,6 +10,11 @@ class RESP3_Parser:
         
         consider: first pass, convert all types to their actual type
                   second pass, collect items into their parent multi-member types 
+                  
+        just encode the bytes into the string representation, 
+        there don't seem to be downsides in the spec and it 
+        means slicing won't bite you
+        
         
     """
     class _RESP3_Cursor:
