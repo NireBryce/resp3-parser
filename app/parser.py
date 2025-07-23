@@ -1,8 +1,17 @@
 from CONSTANTS import CRLF, TEXT_ENCODING, TYPES
-import element_parsers as RESP3
 from element_parsers.resp3_parser_elements import RESP3
 from util import slice_first_byte
 class RESP3_Parser:
+    """ split data into chunks based on CRLF
+        scan chunks for type indicator
+        grab the length [the rest of the chunk]
+        process chunks 'belonging' to that chunk, adding them as their actual type to a new list
+        incriment position past those chunks
+        
+        consider: first pass, convert all types to their actual type
+                  second pass, collect items into their parent multi-member types 
+        
+    """
     class _RESP3_Cursor:
         def __init__(self, split_data, current_operation=None):
             self.chunks = split_data
