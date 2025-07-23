@@ -8,7 +8,6 @@ class RESP3_Parser:
             self.chunks = split_data
             self.position = 0
             self.current_operation = current_operation
-            self.chunk_queue = []
             
     def __init__(self, data):
         self.data = data.split(CRLF)
@@ -16,6 +15,7 @@ class RESP3_Parser:
         self.cursor = self._RESP3_Cursor(self.data)
 
     def parse_element(self, chunk):
+        data = chunk
         match slice_first_byte(data):
             case b"+": 
                 _result = RESP3.simple_string(data)
