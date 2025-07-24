@@ -15,6 +15,7 @@ class RESP3_Parser:
         there don't seem to be downsides in the spec and it 
         means slicing won't bite you
         
+        maybe hold a quque of complex objects like arrays and fill them as you go
         
     """
     class _RESP3_Cursor:
