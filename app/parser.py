@@ -27,7 +27,7 @@ class RESP3_Parser:
             self.position = 0
             self.current_operation = current_operation
             
-    def __init__(self, data):
+    def __init__(self, data: bytes):
         self.data = data.split(CRLF)
         self.position = 0
         self.cursor = self._RESP3_Cursor(self.data)
