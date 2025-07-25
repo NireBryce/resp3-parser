@@ -17,6 +17,9 @@ class RESP3_Parser:
         
         maybe hold a quque of complex objects like arrays and fill them as you go
         
+        
+        Ok lets build a prototype that just steps through it and converts
+        and can handle the complex case after we have that working
     """
     class _RESP3_Cursor:
         def __init__(self, split_data, current_operation=None):
