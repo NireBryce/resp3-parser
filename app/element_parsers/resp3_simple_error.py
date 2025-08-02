@@ -1,7 +1,7 @@
 from ..CONSTANTS import TEXT_ENCODING, CRLF
 from ..util import slice_first_byte
 
-def parse_simple_error(data:bytes) -> tuple[str, bytes]:
+def parse_simple_error(data:bytes):
     if slice_first_byte(data) != b"-":
         raise ValueError(f"Expected '-' for simple error prefix, got {data[0]}")
     print("Simple Error")
