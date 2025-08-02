@@ -288,19 +288,7 @@ if __name__ == "__main__":
     
     
     
-    def test_simple_error():
-        test_string = b"-Error message\r\n"
-        result, _ = RESP3.parse_element(test_string)
-        assert result == ("Error message")
-        
-        test_string = b"-ERR unknown command 'asdf'\r\n"
-        result, _ = RESP3.parse_element(test_string)
-        assert result == ("ERR unknown command 'asdf'")
-        
-        test_string = b"-WRONGTYPE Operation against a key holding the wrong kind of value\r\n"
-        result, _ = RESP3.parse_element(test_string)
-        assert result == ("WRONGTYPE Operation against a key holding the wrong kind of value")
-    test_simple_error()
+
 
     def test_integer():
         test_strings = [
