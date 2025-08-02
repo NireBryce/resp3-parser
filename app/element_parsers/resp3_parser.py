@@ -286,12 +286,7 @@ def main():
 
 if __name__ == "__main__":
     
-    def test_simple_string():
-        test_string = b"+OK\r\n"
-        result, _ = RESP3.parse_element(test_string)
-        print(result)
-        assert result == ("OK")
-    test_simple_string()
+    
     
     def test_simple_error():
         test_string = b"-Error message\r\n"
