@@ -12,7 +12,7 @@ def parse_simple_string(data: bytes):
     """
     if slice_first_byte(data) != b"+":
         raise ValueError(f"Expected '+' for simple string prefix, got {data[0]}")
-    return print("Simple String")
+    print("Simple String")
 
 
 
