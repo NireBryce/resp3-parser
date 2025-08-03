@@ -7,3 +7,4 @@ def test_set():
     # minimal to test identification functionality
     for test in _tests:
         parse_set(test[0])
+

@@ -11,3 +11,4 @@ def test_bulk_string():
     # minimal to test identification functionality
     for test in _tests:
         parse_bulk_string(test[0])
+

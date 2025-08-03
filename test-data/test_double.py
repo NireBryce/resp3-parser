@@ -12,3 +12,4 @@ def test_double():
     # minimal to test identification functionality
     for test in _tests:
         parse_double(test[0])
+

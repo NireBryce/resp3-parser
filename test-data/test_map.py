@@ -8,3 +8,4 @@ def test_map():
     # minimal to test identification functionality
     for test in _tests:
         parse_map(test[0])
+

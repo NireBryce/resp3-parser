@@ -7,3 +7,4 @@ def test_null():
     # minimal to test identification functionality
     for test in _tests:
         parse_null(test[0])
+

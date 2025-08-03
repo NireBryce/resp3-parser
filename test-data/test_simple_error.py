@@ -9,3 +9,4 @@ def test_simple_error():
     # minimal to test identification functionality
     for test in _tests:
         parse_simple_error(test[0])
+

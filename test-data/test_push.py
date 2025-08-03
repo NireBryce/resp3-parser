@@ -8,3 +8,4 @@ def test_push():
     # minimal to test identification functionality
     for test in _tests:
         parse_push(test[0])
+

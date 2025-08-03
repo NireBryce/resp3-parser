@@ -8,3 +8,4 @@ def test_integer():
     # minimal to test identification functionality
     for test in _tests:
         parse_integer(test[0])
+
