@@ -15,7 +15,7 @@ def test_map():
     # minimal to test identification functionality
     for test in _tests:
         result = parse_map(test[0])
-        print(f'{result=}')
+        print(f'map, {result=}')
         
 
 # def _resp_map_logic(data: bytes, length: bytes) -> tuple[dict, bytes]:

@@ -15,7 +15,7 @@ def test_integer():
     # minimal to test identification functionality
     for test in _tests:
         result = parse_integer(test[0])
-        print(f'{result=}')
+        print(f'integer, {result=}')
         
 # def parse_integer(data: bytes):
 #     if slice_first_byte(data) != b":":

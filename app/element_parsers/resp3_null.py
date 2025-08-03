@@ -12,7 +12,7 @@ def test_null():
     # minimal to test identification functionality
     for test in _tests:
         result = parse_null(test[0])
-        print(f'{result=}')
+        print(f'null, {result=}')
         
 # def parse_null(data: bytes):
 #     if slice_first_byte(data) != b"_":

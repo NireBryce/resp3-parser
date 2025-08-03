@@ -15,7 +15,7 @@ def test_verbatim_string():
     # minimal to test identification functionality
     for test in _tests:
         result = parse_verbatim_string(test[0])
-        print(f'{result=}')
+        print(f'verbatim_string, {result=}')
         
 
 # def parse_verbatim_string(data: bytes):

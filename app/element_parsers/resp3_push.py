@@ -15,7 +15,7 @@ def test_push():
     # minimal to test identification functionality
     for test in _tests:
         result = parse_push(test[0])
-        print(f'{result=}')
+        print(f'push, {result=}')
             
 
 # def test_pushes():

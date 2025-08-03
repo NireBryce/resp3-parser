@@ -20,7 +20,7 @@ def test_attribute():
     # minimal to test identification functionality
     for test in _tests:
         result = parse_attribute(test[0])
-        print(f"{result=}")
+        print(f"attribute, {result=}")
 
 # def parse_attribute(data: bytes):
 #     class RESP3Attribute:

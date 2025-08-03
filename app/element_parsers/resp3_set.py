@@ -17,7 +17,7 @@ def test_set():
     # minimal to test identification functionality
     for test in _tests:
         result = parse_set(test[0])
-        print(f'{result=}')
+        print(f'set, {result=}')
         
 # def parse_set(data: bytes):
 #     if slice_first_byte(data) != b"~":

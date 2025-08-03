@@ -19,7 +19,7 @@ def test_simple_string():
     # minimal to test identification functionality
     for test in _tests:
         result = parse_simple_string(test[0])
-        print(f'{result=}')
+        print(f'simple_string, {result=}')
         
 
 # def test_simple_string():

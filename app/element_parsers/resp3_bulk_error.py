@@ -14,7 +14,7 @@ def test_bulk_error():
     # minimal to test identification functionality
     for test in _tests:
         result = parse_bulk_error(test[0])
-        print(f'{result=}')
+        print(f'bulk error, {result=}')
         
 
 # def parse_bulk_error(data: bytes):

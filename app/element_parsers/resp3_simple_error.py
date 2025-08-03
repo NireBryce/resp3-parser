@@ -15,7 +15,7 @@ def test_simple_error():
     # minimal to test identification functionality
     for test in _tests:
         result = parse_simple_error(test[0])
-        print(f'{result=}')
+        print(f'simple_error, {result=}')
         
 
 

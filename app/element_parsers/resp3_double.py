@@ -3,7 +3,8 @@ from ..util import slice_first_byte
 
 def parse_double(data: bytes):
     if slice_first_byte(data) != b",":
-        raise ValueError(f"Expected ',' for double-precision prefix, got {data[0]}")
+        print(f"error: {data} is not ','")
+        # raise ValueError(f"Expected ',' for double-precision prefix, got {data[0]}")
     print("double")
 
 
@@ -20,7 +21,7 @@ def test_double():
     # minimal to test identification functionality
     for test in _tests:
         result = parse_double(test[0])
-        print(f"{result=}")
+        print(f"double, {result=}")
 
 
 # def parse_double(data: bytes):

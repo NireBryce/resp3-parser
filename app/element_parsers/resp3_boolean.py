@@ -1,4 +1,3 @@
-from ..CONSTANTS import CRLF
 from ..util import slice_first_byte
 def parse_boolean(data:bytes):
         if slice_first_byte(data) != b"#":
@@ -13,7 +12,7 @@ def test_boolean():
     # minimal to test identification functionality
     for test in _tests:
         result = parse_boolean(test[0])
-        print(f'{result=}')
+        print(f'boolean, {result=}')
 
 # def parse_boolean(data:bytes):
 #         if slice_first_byte(data) != b"#":

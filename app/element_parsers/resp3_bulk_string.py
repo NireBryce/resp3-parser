@@ -19,7 +19,7 @@ def test_bulk_string():
     # minimal to test identification functionality
     for test in _tests:
         result = parse_bulk_string(test[0])
-        print(f'{result=}')
+        print(f"bulk string, {result=}")
         
 
 # def parse_bulk_string(data: bytes):

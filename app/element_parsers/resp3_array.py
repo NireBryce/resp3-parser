@@ -25,7 +25,7 @@ def test_array():
     # minimal to test identification functionality
     for test in _tests:
         result = parse_array(test[0])
-        print(f"{result=}")
+        print(f"array, {result=}")
 
     # for test in _tests:
     #     result = parse_array(test[0])
