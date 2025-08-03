@@ -1,5 +1,5 @@
 from ..util import slice_first_byte
-from ..app.CONSTANTS import CRLF
+from ..CONSTANTS import CRLF
 def parse_array(data: bytes):
     _PREFIX = b"*"
     if slice_first_byte(data) != _PREFIX:

@@ -1,4 +1,4 @@
-from resp3_parser_elements import RESP3
+from olc.resp3_parser_elements import RESP3
 
 CRLF = b"\r\n"
 TYPES = [
