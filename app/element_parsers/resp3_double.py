@@ -6,7 +6,7 @@ def parse_double(data: bytes):
     if slice_first_byte(data) != _PREFIX:
         print(f"error: '{data[:1]}' is not '{_PREFIX}'")
         # raise ValueError(f"Expected ',' for double-precision prefix, got {data[0]}")
-    print(f"double")
+    print("double")
 
 
 
