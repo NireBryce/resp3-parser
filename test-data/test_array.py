@@ -1,4 +1,4 @@
-from app.element_parsers.resp3_array import parse_array
+from element_parsers.resp3_array import parse_array
 def test_array():
     _tests = [
         # simple array

@@ -1,4 +1,4 @@
-from app.element_parsers.resp3_attribute import parse_attribute
+from element_parsers.resp3_attribute import parse_attribute
 def test_attribute():
     _tests = [
         (b"|1\r\n+key-popularity\r\n%2\r\n$1\r\na\r\n,0.1923\r\n$1\r\nb\r\n,0.0012\r\n*2\r\n:2039123\r\n:9543892\r\n", 

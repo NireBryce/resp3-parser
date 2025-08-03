@@ -1,4 +1,4 @@
-from app.element_parsers.resp3_double import parse_double
+from element_parsers.resp3_double import parse_double
 def test_double():
     _tests = [
         (b",1.23\r\n", 1.23),

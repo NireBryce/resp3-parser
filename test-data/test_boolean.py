@@ -1,4 +1,4 @@
-from app.element_parsers.resp3_boolean import parse_boolean
+from element_parsers.resp3_boolean import parse_boolean
 
 def test_boolean():
     _tests = [

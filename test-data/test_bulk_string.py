@@ -1,4 +1,4 @@
-from app.element_parsers.resp3_bulk_string import parse_bulk_string
+from element_parsers.resp3_bulk_string import parse_bulk_string
 def test_bulk_string():
     _tests = [
         (b"$5\r\nhello\r\n", "hello"),

@@ -1,5 +1,5 @@
 from ..util import slice_first_byte
-from ..CONSTANTS import CRLF
+from ..app.CONSTANTS import CRLF
 
 def parse_verbatim_string(data: bytes):
     _PREFIX = b"="

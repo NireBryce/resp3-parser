@@ -1,4 +1,4 @@
-from app.element_parsers.resp3_map import parse_map
+from element_parsers.resp3_map import parse_map
 def test_map():
     _tests = [
         (b"%2\r\na:1\r\nb:2\r\n", {"a": 1, "b": 2}),

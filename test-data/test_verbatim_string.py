@@ -1,4 +1,4 @@
-from app.element_parsers.resp3_verbatim_string import parse_verbatim_string
+from element_parsers.resp3_verbatim_string import parse_verbatim_string
 def test_verbatim_string():
     _tests = [
         (b"=15\r\ntxt:Some string\r\n", "txt:Some string")

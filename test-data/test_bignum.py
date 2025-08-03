@@ -1,4 +1,4 @@
-from app.element_parsers.resp3_bignum import parse_bignum
+from element_parsers.resp3_bignum import parse_bignum
 def test_bignum():
     _tests = [
         ( b"(349\r\n", 349 ),

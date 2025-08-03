@@ -1,4 +1,4 @@
-from app.element_parsers.resp3_simple_string import parse_simple_string
+from element_parsers.resp3_simple_string import parse_simple_string
 def test_simple_string():
     _tests = [
         (b"+OK\r\n", "OK"),

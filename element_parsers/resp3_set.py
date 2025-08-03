@@ -1,4 +1,4 @@
-from ..CONSTANTS import CRLF
+from ..app.CONSTANTS import CRLF
 from ..util import slice_first_byte
 def parse_set(data: bytes):
     _PREFIX = b"~"

@@ -1,18 +1,18 @@
-from app.element_parsers.resp3_array import parse_array
-from app.element_parsers.resp3_attribute import parse_attribute
-from app.element_parsers.resp3_bignum import parse_bignum
-from app.element_parsers.resp3_boolean import parse_boolean
-from app.element_parsers.resp3_bulk_error import parse_bulk_error
-from app.element_parsers.resp3_bulk_string import parse_bulk_string
-from app.element_parsers.resp3_double import parse_double
-from app.element_parsers.resp3_integer import parse_integer
-from app.element_parsers.resp3_map import parse_map
-from app.element_parsers.resp3_null import parse_null
-from app.element_parsers.resp3_push import parse_push
-from app.element_parsers.resp3_set import parse_set
-from app.element_parsers.resp3_simple_error import parse_simple_error
-from app.element_parsers.resp3_simple_string import parse_simple_string
-from app.element_parsers.resp3_verbatim_string import parse_verbatim_string
+from element_parsers.resp3_array import parse_array
+from element_parsers.resp3_attribute import parse_attribute
+from element_parsers.resp3_bignum import parse_bignum
+from element_parsers.resp3_boolean import parse_boolean
+from element_parsers.resp3_bulk_error import parse_bulk_error
+from element_parsers.resp3_bulk_string import parse_bulk_string
+from element_parsers.resp3_double import parse_double
+from element_parsers.resp3_integer import parse_integer
+from element_parsers.resp3_map import parse_map
+from element_parsers.resp3_null import parse_null
+from element_parsers.resp3_push import parse_push
+from element_parsers.resp3_set import parse_set
+from element_parsers.resp3_simple_error import parse_simple_error
+from element_parsers.resp3_simple_string import parse_simple_string
+from element_parsers.resp3_verbatim_string import parse_verbatim_string
 
 
 def test_array():

@@ -1,4 +1,4 @@
-from app.element_parsers.resp3_simple_error import parse_simple_error
+from element_parsers.resp3_simple_error import parse_simple_error
 def test_simple_error():
     _tests = [
         (b"-Error message\r\n", "Error message"),

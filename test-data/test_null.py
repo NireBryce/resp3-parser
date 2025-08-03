@@ -1,4 +1,4 @@
-from app.element_parsers.resp3_null import parse_null
+from element_parsers.resp3_null import parse_null
 def test_null():
     _tests = [
         (b"_\r\n", None)
