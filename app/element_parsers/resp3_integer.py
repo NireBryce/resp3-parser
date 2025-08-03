@@ -6,7 +6,17 @@ def parse_integer(data: bytes):
     length = data.split(CRLF)[1]
     print(f"integer, length: {length}")
 
-
+def test_integer():
+    _tests = [
+        (b":0\r\n", 0),
+        (b":1000\r\n", 1000)
+    ]
+    
+    # minimal to test identification functionality
+    for test in _tests:
+        result = parse_integer(test[0])
+        print(f'{result=}')
+        
 # def parse_integer(data: bytes):
 #     if slice_first_byte(data) != b":":
 #         raise ValueError(f"Expected ':' for integer prefix, got {data[0]}")
@@ -18,3 +28,15 @@ def parse_integer(data: bytes):
 #     # elif b"+" in _int:
 #     #     _int = _int[1:]
 #     return int(_int)
+
+
+# def test_integer():
+#         test_strings = [
+#             b":0\r\n",
+#             b":1000\r\n"
+#         ]
+#         result, _ = RESP3.parse_element(test_strings.pop(0)) 
+#         assert result == (0)
+#         result, _ = RESP3.parse_element(test_strings.pop(0)) 
+#         assert result == (1000)
+#     test_integer()

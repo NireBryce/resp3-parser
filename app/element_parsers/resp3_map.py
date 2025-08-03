@@ -5,6 +5,18 @@ def parse_map(data: bytes):
         raise ValueError(f"Expected '%' for map prefix, got {data[0]}")
     length = data.split(CRLF)[1]
     print(f"map, length: {length}")
+    
+def test_map():
+    _tests = [
+        (b"%2\r\na:1\r\nb:2\r\n", {"a": 1, "b": 2}),
+        (b"%2\r\n+first\r\n:1\r\n+second\r\n:2\r\n", {"first": 1, "second": 2}),
+    ]
+    
+    # minimal to test identification functionality
+    for test in _tests:
+        result = parse_map(test[0])
+        print(f'{result=}')
+        
 
 # def _resp_map_logic(data: bytes, length: bytes) -> tuple[dict, bytes]:
 #     # TODO: why is this split out
@@ -28,3 +40,13 @@ def parse_map(data: bytes):
 #     _map, _remaining = _resp_map_logic(_data, _length) 
     
 #     return _map, _remaining
+
+# def test_map():
+#         test_strings = [
+#             b"%2\r\na:1\r\nb:2\r\n",
+#             b"%2\r\n+first\r\n:1\r\n+second\r\n:2\r\n"
+#         ]
+        
+#         result, _ = RESP3.parse_element(test_strings.pop(0))
+#         assert result == {"a": 1, "b": 2}
+#     test_map()

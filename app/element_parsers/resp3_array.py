@@ -1,12 +1,36 @@
 from ..util import slice_first_byte
-from ..CONSTANTS import TYPES, CRLF
+from ..CONSTANTS import CRLF
 def parse_array(data: bytes):
     if slice_first_byte(data) != b'*':
         raise ValueError(f"Expected {b'*'} for array prefix, got {data[0]}")
     length = data.split(CRLF)[1]
     print(f"array, length: {length}")
 
+def test_array():
+    _tests = [
+        # simple array
+        (b"*2\r\n+hello\r\n:42\r\n", ["hello", 42]),
+        # empty array
+        (b"*0\r\n", []),
+        # nested array
+        (b"*2\r\n+outer\r\n*2\r\n+inner1\r\n+inner2\r\n", ["outer", ["inner1", "inner2"]]),
+        # mixed types
+        (b"*3\r\n+string\r\n:123\r\n$5\r\nworld\r\n", ["string", 123, "world"]),
+        # clusterduck
+        (b"*5\r\n:1\r\n:2\r\n:3\r\n:4\r\n$5\r\nhello\r\n", [1, 2, 3, 4, "hello"]),
+        (b"*2\r\n*3\r\n:1\r\n:2\r\n:3\r\n*2\r\n+Hello\r\n-World\r\n", [[1, 2, 3], ["Hello", "World"]]),
+        (b"*3\r\n$5\r\nhello\r\n$-1\r\n$5\r\nworld\r\n", ["hello", None, "world"]),
+    ]
+    
+    # minimal to test identification functionality
+    for test in _tests:
+        result = parse_array(test[0])
+        print(f"{result=}")
 
+    # for test in _tests:
+    #     result = parse_array(test[0])
+    #     print(f"{result=}")
+    #     assert result == test[1]
 
 # def parse_array(data: bytes):
 #     if slice_first_byte(data) != b'*':
@@ -37,3 +61,41 @@ def parse_array(data: bytes):
 #     _remaining = _data
 #     print(_array, _remaining)
 #     return _array, _remaining
+
+# def test_arrays():
+#         # simple array
+#         test1 = b"*2\r\n+hello\r\n:42\r\n"
+#         result, _ = RESP3.parse_array(test1)
+#         assert result == ["hello", 42] 
+
+#         # Empty array
+#         test2 = b"*0\r\n"
+#         result, _ = RESP3.parse_array(test2)
+#         assert result == []
+        
+#         # Nested array
+#         test3 = b"*2\r\n+outer\r\n*2\r\n+inner1\r\n+inner2\r\n"
+#         result, _ = RESP3.parse_array(test3)
+#         assert result == ["outer", ["inner1", "inner2"]]
+        
+#         # Mixed types
+#         test4 = b"*3\r\n+string\r\n:123\r\n$5\r\nworld\r\n"
+#         result, _ = RESP3.parse_array(test4)
+#         assert result == ["string", 123, "world"]    
+        
+#         # clusterduck
+#         test_string = b"*5\r\n:1\r\n:2\r\n:3\r\n:4\r\n$5\r\nhello\r\n"
+#         result, _ = RESP3.parse_array(test_string)
+#         assert result == [1, 2, 3, 4, "hello"]
+        
+#         test_string = b"*2\r\n*3\r\n:1\r\n:2\r\n:3\r\n*2\r\n+Hello\r\n-World\r\n"
+#         result, _ = RESP3.parse_array(test_string)
+#         assert result == [[1, 2, 3], ["Hello", "World"]]
+        
+#         test_string = b"*3\r\n$5\r\nhello\r\n$-1\r\n$5\r\nworld\r\n"
+#         result, _ = RESP3.parse_array(test_string)
+#         print(result)
+#         assert result == ["hello", None, "world"]
+#     test_arrays()
+
+

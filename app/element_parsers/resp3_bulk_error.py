@@ -1,4 +1,4 @@
-from ..CONSTANTS import TEXT_ENCODING, CRLF
+from ..CONSTANTS import CRLF
 from ..util import slice_first_byte
 def parse_bulk_error(data: bytes):
     if slice_first_byte(data) != b"!":
@@ -6,6 +6,16 @@ def parse_bulk_error(data: bytes):
     length = data.split(CRLF)[1]
     print(f"bulk error, length: {length}")
 
+def test_bulk_error():
+    _tests = [
+        (b"!21\r\nSYNTAX invalid syntax\r\n", "SYNTAX invalid syntax"),
+    ]
+    
+    # minimal to test identification functionality
+    for test in _tests:
+        result = parse_bulk_error(test[0])
+        print(f'{result=}')
+        
 
 # def parse_bulk_error(data: bytes):
 #     if slice_first_byte(data) != b"!":
@@ -16,3 +26,12 @@ def parse_bulk_error(data: bytes):
 #     _data, _remaining = _data.split(CRLF, 1)
 #     _error = _data[:int(_length)]
 #     return str(_error, TEXT_ENCODING)
+
+# def test_bulk_error():
+#         test_strings = [
+#             b"!21\r\nSYNTAX invalid syntax\r\n",
+#         ]
+        
+#         result, _ = RESP3.parse_element(test_strings.pop(0))
+#         assert result == "SYNTAX invalid syntax"
+#     test_bulk_error()

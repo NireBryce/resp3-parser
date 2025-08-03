@@ -7,6 +7,21 @@ def parse_bulk_string(data: bytes):
     print(f"bulk string, length: {length}")
 
 
+def test_bulk_string():
+    _tests = [
+        (b"$5\r\nhello\r\n", "hello"),
+        # empty
+        (b"$0\r\n\r\n", ""),
+        # null
+        (b"$-1\r\n", None), 
+    ]
+    
+    # minimal to test identification functionality
+    for test in _tests:
+        result = parse_bulk_string(test[0])
+        print(f'{result=}')
+        
+
 # def parse_bulk_string(data: bytes):
 #     if slice_first_byte(data) != b"$":
 #         raise ValueError(f"Expected '$' for bulk string prefix, got {data[0]}")
@@ -26,3 +41,23 @@ def parse_bulk_string(data: bytes):
 #     else:
 #         _string = _string[:int(_length)].decode()
 #     return _string
+
+
+# def test_bulk_string():
+#         test_strings = [
+#             b"$5\r\nhello\r\n",
+#             b"$0\r\n\r\n", # empty
+#             b"$-1\r\n", # null
+#         ]
+#         result, _ = RESP3.parse_element(test_strings.pop(0))
+#         assert result == "hello"
+        
+#         # empty
+#         result, _ = RESP3.parse_element(test_strings.pop(0))
+#         assert result == ""
+        
+#         #null
+#         result, _ = RESP3.parse_element(test_strings.pop(0))
+#         assert result is None
+        
+#     test_bulk_string()

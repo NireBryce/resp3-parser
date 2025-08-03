@@ -1,9 +1,6 @@
-from ..CONSTANTS import TEXT_ENCODING, CRLF
 from ..util import slice_first_byte
 
 
-def test_simple_string():
-    assert type(parse_simple_string(b"+OK\r\n")) is str
 def parse_simple_string(data: bytes):
     """ Take a RESP3 simple string representation as bytes and return the 
         string it contains, as a string
@@ -14,7 +11,16 @@ def parse_simple_string(data: bytes):
         raise ValueError(f"Expected '+' for simple string prefix, got {data[0]}")
     print("Simple String")
 
-
+def test_simple_string():
+    _tests = [
+        (b"+OK\r\n", "OK"),
+    ]
+    
+    # minimal to test identification functionality
+    for test in _tests:
+        result = parse_simple_string(test[0])
+        print(f'{result=}')
+        
 
 # def test_simple_string():
 #     test_string = b"+OK\r\n"

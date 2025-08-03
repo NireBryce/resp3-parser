@@ -7,7 +7,16 @@ def parse_verbatim_string(data: bytes):
     length = data.split(CRLF)[1]
     print(f"verbatim string, length: {length}")
 
-
+def test_verbatim_string():
+    _tests = [
+    
+    ]
+    
+    # minimal to test identification functionality
+    for test in _tests:
+        result = parse_verbatim_string(test[0])
+        print(f'{result=}')
+        
 
 # def parse_verbatim_string(data: bytes):
 #     if slice_first_byte(data) != b"=":
@@ -28,3 +37,12 @@ def parse_verbatim_string(data: bytes):
 #     _data, _remaining = _data.split(CRLF, 1)
 #     _string = _data[:int(_length)]
 #     return str(_string, encoding=_encoding), _remaining
+
+# def test_verbatim_string():
+#         test_strings = [
+#             b"=15\r\ntxt:Some string\r\n",
+#         ]
+        
+#         result, _ = RESP3.parse_element(test_strings.pop(0))
+#         assert result == "txt:Some string"
+#     test_verbatim_string()
