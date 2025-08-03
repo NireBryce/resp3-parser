@@ -3,7 +3,8 @@ from ..CONSTANTS import CRLF
 def parse_array(data: bytes):
     if slice_first_byte(data) != b'*':
         raise ValueError(f"Expected {b'*'} for array prefix, got {data[0]}")
-    length = data.split(CRLF)[1]
+    prefix, data = data.split(b"*", 1)
+    length = int(data.split(CRLF, 1)[0])
     print(f"array, length: {length}")
 
 
