@@ -1,4 +1,3 @@
-from ..CONSTANTS import CRLF
 from ..util import slice_first_byte
 
 

@@ -1,4 +1,3 @@
-from ..CONSTANTS import TEXT_ENCODING, CRLF
 from ..util import slice_first_byte
 
 def parse_simple_error(data:bytes):
