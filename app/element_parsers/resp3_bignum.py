@@ -15,8 +15,8 @@ def test_bignum():
     
     # minimal to test identification functionality
     for test in _tests:
-        result = parse_bignum(test[0])
-        print(f'bignum, {result=}')
+        parse_bignum(test[0])
+
 
 # def parse_bignum(data: bytes):
 #     if slice_first_byte(data) != b"(":

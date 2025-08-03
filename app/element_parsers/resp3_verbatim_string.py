@@ -7,16 +7,6 @@ def parse_verbatim_string(data: bytes):
     length = data.split(CRLF)[1]
     print(f"verbatim string, length: {length}")
 
-def test_verbatim_string():
-    _tests = [
-    
-    ]
-    
-    # minimal to test identification functionality
-    for test in _tests:
-        result = parse_verbatim_string(test[0])
-        print(f'verbatim_string, {result=}')
-        
 
 # def parse_verbatim_string(data: bytes):
 #     if slice_first_byte(data) != b"=":

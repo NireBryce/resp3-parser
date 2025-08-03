@@ -8,20 +8,8 @@ def parse_double(data: bytes):
     print("double")
 
 
-def test_double():
-    _tests = [
-        (b",1.23\r\n", 1.23),
-        (b":10\r\n", 10),
-        (b",10\r\n", 10.0),
-        (b",inf\r\n", float("inf")),
-        (b",-inf\r\n", float("-inf")),
-        (b",nan\r\n", float("NaN")),
-    ]
 
-    # minimal to test identification functionality
-    for test in _tests:
-        result = parse_double(test[0])
-        print(f"double, {result=}")
+
 
 
 # def parse_double(data: bytes):

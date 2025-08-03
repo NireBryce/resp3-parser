@@ -6,16 +6,8 @@ def parse_bulk_error(data: bytes):
     length = data.split(CRLF)[1]
     print(f"bulk error, length: {length}")
 
-def test_bulk_error():
-    _tests = [
-        (b"!21\r\nSYNTAX invalid syntax\r\n", "SYNTAX invalid syntax"),
-    ]
-    
-    # minimal to test identification functionality
-    for test in _tests:
-        result = parse_bulk_error(test[0])
-        print(f'bulk error, {result=}')
-        
+
+
 
 # def parse_bulk_error(data: bytes):
 #     if slice_first_byte(data) != b"!":

@@ -7,20 +7,8 @@ def parse_bulk_string(data: bytes):
     print(f"bulk string, length: {length}")
 
 
-def test_bulk_string():
-    _tests = [
-        (b"$5\r\nhello\r\n", "hello"),
-        # empty
-        (b"$0\r\n\r\n", ""),
-        # null
-        (b"$-1\r\n", None), 
-    ]
-    
-    # minimal to test identification functionality
-    for test in _tests:
-        result = parse_bulk_string(test[0])
-        print(f"bulk string, {result=}")
-        
+
+
 
 # def parse_bulk_string(data: bytes):
 #     if slice_first_byte(data) != b"$":

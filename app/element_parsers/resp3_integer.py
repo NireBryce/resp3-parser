@@ -6,16 +6,7 @@ def parse_integer(data: bytes):
     length = data.split(CRLF)[1]
     print(f"integer, length: {length}")
 
-def test_integer():
-    _tests = [
-        (b":0\r\n", 0),
-        (b":1000\r\n", 1000)
-    ]
-    
-    # minimal to test identification functionality
-    for test in _tests:
-        result = parse_integer(test[0])
-        print(f'integer, {result=}')
+
         
 # def parse_integer(data: bytes):
 #     if slice_first_byte(data) != b":":

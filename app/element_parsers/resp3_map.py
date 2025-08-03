@@ -6,17 +6,7 @@ def parse_map(data: bytes):
     length = data.split(CRLF)[1]
     print(f"map, length: {length}")
     
-def test_map():
-    _tests = [
-        (b"%2\r\na:1\r\nb:2\r\n", {"a": 1, "b": 2}),
-        (b"%2\r\n+first\r\n:1\r\n+second\r\n:2\r\n", {"first": 1, "second": 2}),
-    ]
-    
-    # minimal to test identification functionality
-    for test in _tests:
-        result = parse_map(test[0])
-        print(f'map, {result=}')
-        
+
 
 # def _resp_map_logic(data: bytes, length: bytes) -> tuple[dict, bytes]:
 #     # TODO: why is this split out

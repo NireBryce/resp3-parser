@@ -3,16 +3,7 @@ def parse_boolean(data:bytes):
         if slice_first_byte(data) != b"#":
             raise ValueError(f"Expected '#' for boolean prefix, got {data[0]}")
         print("boolean")
-def test_boolean():
-    _tests = [
-        (b"#t\r\n", True),
-        (b"#f\r\n", False),
-    ]
-    
-    # minimal to test identification functionality
-    for test in _tests:
-        result = parse_boolean(test[0])
-        print(f'boolean, {result=}')
+
 
 # def parse_boolean(data:bytes):
 #         if slice_first_byte(data) != b"#":
