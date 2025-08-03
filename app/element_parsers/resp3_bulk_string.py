@@ -4,9 +4,17 @@ def parse_bulk_string(data: bytes):
     _PREFIX = b"$"
     if slice_first_byte(data) != _PREFIX:
         raise ValueError(f"Expected '{_PREFIX}' for bulk string prefix, got {data[0]}")
-    prefix, data = data.split(_PREFIX, 1)
-    length = int(data.split(CRLF, 1)[0])
-    print(f"bulk string, length: {length}")
+    
+    if data.split(CRLF)[0][1:] == b"":
+        print("bulk string, Empty")
+    elif data.split(CRLF)[0][1:] == b"-1":
+        print("bulk string, Null")
+    
+    
+    else:
+        prefix, data = data.split(_PREFIX, 1)
+        length = int(data.split(CRLF, 1)[0])
+        print(f"bulk string, length: {length}")
 
 
 
