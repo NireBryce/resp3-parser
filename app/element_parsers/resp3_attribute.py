@@ -1,9 +1,10 @@
 from ..util import slice_first_byte
 from ..CONSTANTS import CRLF
 def parse_attribute(data: bytes):
-    if slice_first_byte(data) != b"|":
-        raise ValueError(f"Expected '|' for attribute prefix, got {data[0]}")
-    prefix, data = data.split(b"*", 1)
+    _PREFIX = b"|"
+    if slice_first_byte(data) != _PREFIX:
+        raise ValueError(f"Expected '{_PREFIX}' for attribute prefix, got {data[0]}")
+    prefix, data = data.split(_PREFIX, 1)
     length = int(data.split(CRLF, 1)[0])
     print(f"attribute, length: {length}")
 

@@ -1,7 +1,8 @@
 from ..util import slice_first_byte
 def parse_bignum(data: bytes):
-    if slice_first_byte(data) != b"(":
-        raise ValueError(f"Expected '(' for bignum prefix, got {data[0]}")
+    _PREFIX = b"("
+    if slice_first_byte(data) != _PREFIX:
+        raise ValueError(f"Expected '{_PREFIX}' for bignum prefix, got {data[0]}")
     print("bignum")
 
 def test_bignum():

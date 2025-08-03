@@ -1,11 +1,11 @@
 from ..CONSTANTS import CRLF
 from ..util import slice_first_byte
 def parse_set(data: bytes):
-    if slice_first_byte(data) != b"~":
-        raise ValueError(f"Expected '~' for set prefix, got {data[0]}")
-    # _prefix, _data = data.split(b"~", 1)
-    # _length, _data = _data.split(CRLF, 1)
-    length = data.split(CRLF)[1]
+    _PREFIX = b"~"
+    if slice_first_byte(data) != _PREFIX:
+        raise ValueError(f"Expected '{_PREFIX}' for set prefix, got {data[0]}")
+    prefix, data = data.split(_PREFIX, 1)
+    length = int(data.split(CRLF, 1)[0])
     
     print(f"set, length: {length}")
 

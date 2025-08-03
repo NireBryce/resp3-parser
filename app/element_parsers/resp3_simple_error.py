@@ -1,8 +1,9 @@
 from ..util import slice_first_byte
 
 def parse_simple_error(data:bytes):
-    if slice_first_byte(data) != b"-":
-        raise ValueError(f"Expected '-' for simple error prefix, got {data[0]}")
+    _PREFIX = b"-"
+    if slice_first_byte(data) != _PREFIX:
+        raise ValueError(f"Expected '{_PREFIX}' for simple error prefix, got {data[0]}")
     print("Simple Error")
 
 

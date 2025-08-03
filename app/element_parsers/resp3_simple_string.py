@@ -7,20 +7,11 @@ def parse_simple_string(data: bytes):
     
         example: +OK\r\n
     """
-    if slice_first_byte(data) != b"+":
-        raise ValueError(f"Expected '+' for simple string prefix, got {data[0]}")
+    _PREFIX = b"+"
+    if slice_first_byte(data) != _PREFIX:
+        raise ValueError(f"Expected '{_PREFIX}' for simple string prefix, got {data[0]}")
     print("Simple String")
 
-def test_simple_string():
-    _tests = [
-        (b"+OK\r\n", "OK"),
-    ]
-    
-    # minimal to test identification functionality
-    for test in _tests:
-        parse_simple_string(test[0])
-        
-        
 
 # def test_simple_string():
 #     test_string = b"+OK\r\n"

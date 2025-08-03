@@ -1,13 +1,11 @@
-from ..CONSTANTS import CRLF
 from ..util import slice_first_byte
 def parse_integer(data: bytes):
-    if slice_first_byte(data) != b":":
-        raise ValueError(f"Expected ':' for integer prefix, got {data[0]}")
-    length = data.split(CRLF)[1]
-    print(f"integer, length: {length}")
+    _PREFIX = b":"
+    if slice_first_byte(data) != _PREFIX:
+        raise ValueError(f"Expected '{_PREFIX}' for integer prefix, got {data[0]}")
+    print("Integer")
 
 
-        
 # def parse_integer(data: bytes):
 #     if slice_first_byte(data) != b":":
 #         raise ValueError(f"Expected ':' for integer prefix, got {data[0]}")

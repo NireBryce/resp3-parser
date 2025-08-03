@@ -1,7 +1,8 @@
 from ..util import slice_first_byte
 def parse_null(data: bytes):
-    if slice_first_byte(data) != b"_":
-        raise ValueError(f"Expected '_' for null prefix, got {data[0]}")
+    _PREFIX = b"_"
+    if slice_first_byte(data) != _PREFIX:
+        raise ValueError(f"Expected '{_PREFIX}' for null prefix, got {data[0]}")
     print("null")
 
 

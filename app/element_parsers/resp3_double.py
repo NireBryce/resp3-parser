@@ -2,8 +2,9 @@ from ..util import slice_first_byte
 
 
 def parse_double(data: bytes):
-    if slice_first_byte(data) != b",":
-        print(f"error: {data} is not ','")
+    _PREFIX = b","
+    if slice_first_byte(data) != _PREFIX:
+        print(f"error: {data} is not '{_PREFIX}'")
         # raise ValueError(f"Expected ',' for double-precision prefix, got {data[0]}")
     print("double")
 

@@ -1,8 +1,9 @@
 from ..util import slice_first_byte
 def parse_boolean(data:bytes):
-        if slice_first_byte(data) != b"#":
-            raise ValueError(f"Expected '#' for boolean prefix, got {data[0]}")
-        print("boolean")
+    _PREFIX = b"#"
+    if slice_first_byte(data) != _PREFIX:
+        raise ValueError(f"Expected '{_PREFIX}' for boolean prefix, got {data[0]}")
+    print("boolean")
 
 
 # def parse_boolean(data:bytes):
