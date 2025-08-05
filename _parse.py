@@ -56,7 +56,11 @@ class RESP3Parser:
     def resp3_bignum(self):
         self.results.append(int(self._simple_parse()))
     
-
+    def _aggregate_parse(self):
+        length = b""
+        while self.cursor != b"\r":
+            length += self.cursor
+            self.step()
         
     
     def dispatch(self, prefix):
