@@ -1,21 +1,42 @@
 from CONSTANTS import TYPES
 class RESP3Parser: 
-    def __init__(self, data: bytes):
-        self.data = data
+    @classmethod
+    def to_list_chunks(cls, resp3_request):
+        """ convert a request from bytes to string, and split into a list of 
+            strings at the CRLF boundaries so they're easier to iterate through
+        """
+        return str(resp3_request, "utf-8").split() 
+    def __init__(self, resp3_request: bytes):
         self.position = 0
         self.cursor = b''
-    
+        self.data = self.to_list_chunks(resp3_request)
     def update_cursor(self):
         self.cursor = self.data[self.position]
-    def step(self):
+
+    def parse(self, prefix):
         self.cursor = self.data[self.position]
-        if self.cursor in TYPES:
-            self.position += 1
-            length = self.find_length()
-            
-            
-            
-            
+        match self.cursor: 
+            case b"+": 
+                
+            # case b"-":
+            # case b":":
+            # case b"$":
+            # case b"*":
+            # case b"_":
+            # case b"#":
+            # case b",":
+            # case b"(":
+            # case b"!":
+            # case b"=":
+            # case b"%":
+            # case b"|":
+            # case b"~":
+            # case b">":
+        
+        prefix = self.cursor
+        self.position += 1
+        self.parse(prefix)
+
 
     def find_length(self):
         length = 0
