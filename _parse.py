@@ -34,49 +34,90 @@ class RESP3Parser:
         self.step() # skip \n
         
     def resp3_simple_str(self):
-        self.results.append(str(self._simple_parse()))
+        return str(self._simple_parse())
     def resp3_simple_error(self):
-        self.results.append(str(self._simple_parse()))
+        return str(self._simple_parse())
     
     def resp3_integer(self):
-        self.results.append(int(self._simple_parse()))
+        return int(self._simple_parse())
     
     def resp3_boolean(self):
         _bool = False if self.cursor == "f" else True
         self._simple_parse_edge_case_loop()
-        self.results.append(bool(_bool))
+        return bool(_bool)
     
     def resp3_null(self):
         self._simple_parse_edge_case_loop()
-        self.results.append(None)
+        return None
         
     def resp3_double(self):
-        self.results.append(int(self._simple_parse()))
+        return int(self._simple_parse())
         
     def resp3_bignum(self):
-        self.results.append(int(self._simple_parse()))
+        return int(self._simple_parse())
     
-    def _aggregate_parse(self):
+    def parse_length(self):
         length = b""
         while self.cursor != b"\r":
             length += self.cursor
             self.step()
+        self.step() # skip \n
         
+        return int(length)
+        
+    def _aggregate_parse(self, length):
+        elements = []
+        for _ in range(length): # TODO: check if this needs to be length + 1
+            element = None
+            while self.cursor != b"\r":
+                element = self.dispatch() # this should run once, ie, this while-loop should end immediately after.
+            self.step() # remove \n
+            elements.append(element) 
+        return elements
     
-    def dispatch(self, prefix):
+    def resp3_array(self):
+        length = self.parse_length()
+        if int(length) == -1: 
+            return [None]
+        elif int(length) == 0:
+            return []
+        else:
+            elements = self._aggregate_parse(length)
+            return elements
+    
+    def resp3_map(self):
+        length = self.parse_length()
+        elements = {}
+        for _ in range(length):
+            key = self.dispatch()
+            value = self.dispatch()
+            elements[key] = value
+        return elements
+    
+    def resp3_attribute(self):
+        length = self.parse_length()
+        attrs = {}
+        for _ in range(length):
+            name = self.dispatch()
+            attr = self.dispatch()
+            attrs[name] = attr
+        return attrs
+        # TODO: may have to also handle the reply here? documentation unclear.
+    
+    def dispatch(self):
+        prefix: bytes = self.cursor
+        self.step()
         if prefix == b"+":
-                self.resp3_simple_str()
+            return self.resp3_simple_str()
         if prefix == b"-":
-            self.resp3_simple_error()
+            return self.resp3_simple_error()
         if prefix == b":":
-            self.resp3_integer()
+            return self.resp3_integer()
             
 
     def parse(self):
         while True:
-            prefix: bytes = self.cursor
-            self.step()
-            self.dispatch(prefix)
+            self.results.append(self.dispatch())
             
                 
         match self.cursor: 
