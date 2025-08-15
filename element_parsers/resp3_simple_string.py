@@ -7,10 +7,12 @@ def parse_simple_string(data: bytes):
     
         example: +OK\r\n
     """
-    _PREFIX = b"+"
+    _PREFIX = "+"
     if slice_first_byte(data) != _PREFIX:
         raise ValueError(f"Expected '{_PREFIX}' for simple string prefix, got {data[0]}")
-    print("Simple String")
+    data[0] = slice_first_byte(data) 
+    data[0] = data[1:]
+    return data
 
 
 # def test_simple_string():
