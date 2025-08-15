@@ -2,32 +2,36 @@ from ast import Pass
 from CONSTANTS import TYPES
 class RESP3Parser: 
     @classmethod
-    def to_list_chunks(cls, resp3_request):
+    def to_str_chunks(cls, resp3_request):
         """ convert a request from bytes to string, and split into a list of 
             strings at the CRLF boundaries so they're easier to iterate through
         """
         return str(resp3_request, "utf-8").split() 
     def __init__(self, resp3_request: bytes):
+        self.data = self.to_str_chunks(resp3_request)
         self.position = 0
-        self.cursor: bytes = b''
-        self.data = resp3_request
-        # self.data = self.to_list_chunks(resp3_request)
         self.results = []
-        self._sync_cursor()
-    def _sync_cursor(self):
-        self.cursor = self.data[:self.position] # absurd way to get a one-character bytes literal
+        self.debug_previous = []
+        self.cursor = self.data[self.position]
+        # self.step() # load first into queue
+        
+        # I really need to figure out a way to do 'for elem in data:' but then skip iterations.
+        # or just handle every thing in every loop but oof.
+
 
     def step(self):
-        self.position += 1
-        self._sync_cursor
+        self.debug_previous.append(self.cursor)
+        self.cursor = self.data[self.position]
     
     def _simple_parse(self):
-        _result = b""
-        while self.cursor != b"\r":
-            _result += self.cursor
-            self.step()
-        self.step() # skip \n
-        return _result
+        result = None
+        
+        # _result = b""
+        # while self.cursor:
+        #     _result += self.cursor
+        #     self.step()
+        # self.step() # skip \n
+        # return _result
     def _simple_parse_edge_case_loop(self):
         while self.cursor != b"\r":
             self.step()
