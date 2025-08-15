@@ -1,16 +1,17 @@
 from ..util import slice_first_byte
 
 
-def parse_simple_string(data: list[str]):
+def parse_simple_string(data: bytes):
     """ Take a RESP3 simple string representation as bytes and return the 
         string it contains, as a string
     
         example: +OK\r\n
     """
     _PREFIX = "+"
-    if data[0][0] != _PREFIX:
+    if slice_first_byte(data) != _PREFIX:
         raise ValueError(f"Expected '{_PREFIX}' for simple string prefix, got {data[0]}")
-    data[0] = data[0][1:]
+    data[0] = slice_first_byte(data) 
+    data[0] = data[1:]
     return data
 
 
